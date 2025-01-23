@@ -1,7 +1,12 @@
+
 <template>
-  <div id="dds-template-profileImage" :title="userName">
+  <el-avatar
+    :title="userName"
+    class="profile-avatar"
+    :style="avatarStyle"
+  >
     {{ userNameShort }}
-  </div>
+  </el-avatar>
 </template>
 
 <script>
@@ -15,21 +20,26 @@ export default {
     userName: String,
     userNameShort: String,
   },
+  computed: {
+    avatarStyle() {
+      return {
+        background: '#478f7c',
+        fontSize: '16px',
+        color: 'hsl(0, 0%, 100%)'
+      };
+    }
+  }
 };
 </script>
 
-<style lang="scss">
-#dds-template-profileImage {
+<style scoped>
+.profile-avatar {
   width: 2rem;
   height: 2rem;
   cursor: pointer;
   border-radius: 50%;
-  background: #478f7c;
-  font-size: 16px;
-  color: hsl(0, 0%, 100%);
-  text-align: center;
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
   margin: 0px 5px;
 }

@@ -1,30 +1,41 @@
+
 <template>
-  <ifx-sidebar
-    application-name="Application Name"
-    show-header="true"
-    show-footer="true"
-    initial-collapse="true"
-    terms-of-use="https://yourwebsite.com/terms"
-    imprint="https://yourwebsite.com/imprint"
-    privacy-policy="https://yourwebsite.com/privacy-policy"
-    copyright-text="© 1999 - 2024 Infineon Technologies AG"
-    class="dds-app-side-bar"
-  >
-    <ifx-sidebar-item
-      :to="{ name: 'Home' }"
-      is-action-item="false"
-      icon="image-16"
+  <el-aside width="250px" class="sidebar">
+ <el-menu
+      default-active="1"
+      class="el-menu-vertical-demo"
+      router
+      background-color="#fff"
+      text-color="#000"
+      active-text-color="#0a8276"
     >
-      <RouterLink to="/" class="sidebar-link">Home</RouterLink>
-    </ifx-sidebar-item>
-    <ifx-sidebar-item
-      :to="{ name: 'AG-Grid' }"
-      is-action-item="false"
-      icon="image-16"
-    >
-      <RouterLink to="/ag-grid" class="sidebar-link">AG-Grid</RouterLink>
-    </ifx-sidebar-item>
-  </ifx-sidebar>
+    <div class="sidebar-header">
+      <img src="../assets/images/ico.png" alt="Company Logo" class="sidebar-logo" />
+      <span class="application-name">Application Name</span>
+    </div>
+      <el-menu-item index="1">
+        <RouterLink to="/" class="sidebar-link">
+          <i class="el-icon-menu"></i>
+          <span class="menu-text">Home</span>
+        </RouterLink>
+      </el-menu-item>
+      <el-menu-item index="2">
+        <RouterLink to="/ag-grid" class="sidebar-link">
+          <i class="el-icon-menu"></i>
+          <span class="menu-text">AG-Grid</span>
+        </RouterLink>
+      </el-menu-item>
+      <div class="sidebar-footer-separator"></div> 
+      <div class="sidebar-footer">
+      <a href="https://yourwebsite.com/terms" target="_blank" class="footer-link">Terms of Use</a>
+      <a href="https://yourwebsite.com/imprint" target="_blank" class="footer-link" style="margin-left: 10px;">Imprint</a><br>
+      <br>
+      <a href="https://yourwebsite.com/privacy-policy" target="_blank" class="footer-link" style="margin-top: 10px;">Privacy Policy</a>
+      <div class="copyright-text">© 1999 - 2024 Infineon <br>Technologies AG</div>
+    </div>
+
+  </el-menu>
+  </el-aside>
 </template>
 
 <script>
@@ -33,15 +44,97 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.dds-app-side-bar {
+<style scoped lang="scss">
+.sidebar {
   top: 0;
   height: 100vh;
   position: fixed;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 25px;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.sidebar-logo {
+  width: 115px;
+  margin-bottom: 10px;
+}
+
+.application-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.el-menu-vertical-demo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
 }
 
 .sidebar-link {
-  text-decoration: none; 
-  color: inherit;        
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 1rem;
+}
+
+.sidebar-link:hover {
+  color: #0a8276;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+.sidebar-footer-separator {
+  height: 1px;
+  background-color: #0f0f0f;
+  margin: 10px 0; /* Adjust margin to provide spacing */
+}
+
+.menu-text {
+  margin-left: -60px;
+}
+
+.el-menu-item.is-active {
+  box-shadow: none !important;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  text-align: left;
+  padding-top: 20px;
+  font-size: 13px;
+}
+
+.footer-link {
+  color: #000;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer-link:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.copyright-text {
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #696868;
 }
 </style>

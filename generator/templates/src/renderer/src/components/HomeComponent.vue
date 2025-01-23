@@ -22,8 +22,8 @@ const user = computed(() => {
 #hello-world {
   font-size: 100px;
   margin-top: 20px;
-  background: tokens.$ifxColorEngineering200;
-  color: tokens.$ifxColorBerry500;
+  background: #EEEDED;
+  color: #9C216E;
   padding: 100px;
   font-weight: lighter;
 }

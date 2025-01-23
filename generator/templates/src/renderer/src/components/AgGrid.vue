@@ -8,42 +8,35 @@
         accept=".xlsx, .xls"
         @change="handleFileUpload"
       />
-      <ifx-button
-        type="button"
+      <el-button
+        type="primary"
         :disabled="false"
-        variant="primary"
-        size="m"
-        target="_blank"
-        theme="default"
-        full-width="false"
+        size="medium"
+        :style="{ backgroundColor: '#0a8276', borderColor: '#0a8276',fontWeight: 'bold' , fontSize: '16px',borderRadius: '0px',padding: '5px 15px', height: '40px' }"
         @click="triggerFileInput"
       >
         Import Excel
-      </ifx-button>
-      <ifx-button
-        type="button"
+      </el-button>
+      <el-button
+        type="primary"
+        plain
         :disabled="!dataImported"
-        variant="secondary"
-        size="m"
-        target="_blank"
-        theme="default"
-        full-width="false"
+        size="medium"
+        :style="{ backgroundColor: '#fff', borderColor: '#0a8276', color:'#0a8276', fontWeight: 'bold' ,fontSize: '16px',borderRadius: '0px' ,padding: '5px 15px', height: '40px'}"
         @click="exportExcel"
       >
         Export Excel
-      </ifx-button>
-      <ifx-button
-        type="button"
+      </el-button>
+      <el-button
+        type="primary"
+        link
         :disabled="!dataImported"
-        variant="tertiary"
-        size="m"
-        target="_blank"
-        theme="default"
-        full-width="false"
+        size="medium"
+        :style="{ backgroundColor: '#fff', borderColor: '#fff', color: '#0a8276',fontWeight: 'bold',fontSize: '16px',padding: '5px 15px', height: '40px' }"
         @click="deleteSelectedRows"
       >
         Delete
-      </ifx-button>
+      </el-button>
     </div>
 
     <div class="ag-grid-wrapper">
@@ -58,7 +51,6 @@
         style="width: 100%; height: calc(100vh - 150px);"
         :pagination="true"
         :pagination-page-size="paginationPageSize"
-        :pagination-page-size-selector="paginationPageSizeSelector"
         @grid-ready="onGridReady"
       />
     </div>
@@ -245,7 +237,11 @@ export default {
 <style lang="scss">
 
 .header {
-  font: tokens.$ifxHeadingHeading04;
+  font: 600 2.75rem/3.5rem 'Source Sans 3';
+}
+.el-button--primary {
+  background-color: #08665C;
+  border-color: #08665C;
 }
 .ag-grid-container {
   <%_ if(promptResults.isSideBarRequired=="Vertical Menu") { _%>
