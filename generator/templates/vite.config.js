@@ -12,8 +12,7 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      scss: { additionalData: `@use 'node_modules/@infineon/design-system-tokens/dist/tokens.scss' as tokens;`
-       ,
+      scss: { 
         silenceDeprecations: ["legacy-js-api"],
       },
     },

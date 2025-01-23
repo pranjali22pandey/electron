@@ -42,6 +42,7 @@ import NavBar from "./NavBar.vue";
 <%_ } _%>
 <%_ if(promptResults.isSideBarRequired=="Vertical Menu" ) { _%>
 import SideBar from "./SideBar.vue";
+import { ref } from "vue";
 <%_ } _%>
 
 export default {
@@ -49,7 +50,9 @@ export default {
   components: {
     <%_ if(promptResults.isSideBarRequired=="Horizontal Menu") { _%>
     NavBar,
-    <%_ } _%>
+     } 
+  
+     <%_ };_%>
     <%_ if(promptResults.isSideBarRequired=="Vertical Menu" ) { _%>
     SideBar,
     },
@@ -60,8 +63,8 @@ export default {
       };
     }
     <%_ } _%>
-  },
-}
+  };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
