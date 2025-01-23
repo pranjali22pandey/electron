@@ -1,0 +1,57 @@
+stages:
+  - build
+  - deploy_to_statging
+  - deploy_to_production
+   
+variables:
+  APP_NAME: electron-app
+  APP_STAGING_NAME: electron-app-staging
+  HICP_CLUSTER: eu-de-1
+  HICP_PROJECT: devgate
+  HICP_STAGING_CLUSTER: eu-de-1
+  HICP_STAGING_PROJECT: devgate
+  DOCKER_REGISTRY: docker-devgate-registry.vih.infineon.com
+  CONTAINER_PORT: 5173
+  APP_URL: electron-app.icp.infineon.com
+  APP_STAGING_URL: electron-app-staging.icp.infineon.com
+  ARGOCD_USER: admin
+  HELM_REPO: https://artifactory.intra.infineon.com/artifactory/helm-des-spf-charts-local/
+  HELM_CHART: spf-gitlab-cd
+  HELM_VERSION: 0.2.0
+  DOCKER_IMAGE: $DOCKER_REGISTRY/$APP_NAME:$CI_PIPELINE_ID
+  ARGOCD_SERVER: devgate-argocd-applications.icp.infineon.com
+ 
+build:
+  stage: build
+  tags:
+    - ifx-devops-linux-docker-build-auc
+  script:
+    - docker login -u $SVC_ACCOUNT_USER -p $SVC_ACCOUNT_PASSWORD $DOCKER_REGISTRY
+    - docker build -t $DOCKER_IMAGE .
+    - docker push $DOCKER_IMAGE
+ 
+deploy_to_statging:
+  stage: deploy_to_statging
+  environment:
+    name: staging
+  tags:
+    - devops-assets
+  script:
+    - curl -sSL -o argocd https://artifactory.intra.infineon.com/artifactory/gen-github/argoproj/argo-cd/releases/download/v2.6.15/argocd-linux-amd64
+    - chmod a+x argocd
+    - ./argocd login $ARGOCD_SERVER --username $ARGOCD_USER --password $ARGOCD_PASSWORD
+    - ./argocd app create $APP_STAGING_NAME --repo $HELM_REPO --helm-chart $HELM_CHART --revision $HELM_VERSION --dest-namespace $HICP_STAGING_PROJECT --dest-server https://api.$HICP_STAGING_CLUSTER.icp.infineon.com:6443 --helm-set icpProject=$HICP_STAGING_PROJECT --helm-set imageRepo=$DOCKER_IMAGE --helm-set containerPort=$CONTAINER_PORT --helm-set appName=$APP_STAGING_NAME --helm-set appUrl=$APP_STAGING_URL --sync-policy auto --upsert
+ 
+deploy_to_production:
+  stage: deploy_to_production
+  environment:
+    name: production
+  tags:
+    - devops-assets
+  script:
+    - curl -sSL -o argocd https://artifactory.intra.infineon.com/artifactory/gen-github/argoproj/argo-cd/releases/download/v2.6.15/argocd-linux-amd64
+    - chmod a+x argocd
+    - ./argocd login $ARGOCD_SERVER --username $ARGOCD_USER --password $ARGOCD_PASSWORD
+    - ./argocd app create $APP_NAME --repo $HELM_REPO --helm-chart $HELM_CHART --revision $HELM_VERSION --dest-namespace $HICP_PROJECT --dest-server https://api.$HICP_CLUSTER.icp.infineon.com:6443 --helm-set icpProject=$HICP_PROJECT --helm-set imageRepo=$DOCKER_IMAGE --helm-set containerPort=$CONTAINER_PORT --helm-set appName=$APP_NAME --helm-set appUrl=$APP_URL --sync-policy auto --upsert
+  only:
+    - master

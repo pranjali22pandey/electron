@@ -1,0 +1,22 @@
+{
+  "name": "@ifxglobal/vue-cli-plugin-electron-dashboard",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://artifactory.intra.infineon.com/artifactory/api/npm/npm-tcp-ui-component-library-local/"
+  },
+  "description": "Electron plugin developed as part of Web Design System",
+  "homepage": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pranjali Pandey",
+  "license": "ISC",
+  "bin": {
+    "create-electron-vite-app": "./create-electron-vite-app.js",
+    "invoke-vue-cli-plugin": "./invoke-vue-cli-plugin.js"
+  },
+  "dependencies": {
+    "yargs": "^17.2.1"
+  }
+}

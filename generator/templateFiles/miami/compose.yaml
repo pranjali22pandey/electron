@@ -1,0 +1,19 @@
+services:
+  oidc-sidecar:
+    image: rddl-registry.vih.infineon.com/miami/oidc-sidecar:1.1.0
+    ports:
+      - "8088:8088"
+    entrypoint:
+      /bin/oauth2-proxy
+      --client-id=${CLIENT_ID}
+      --client-secret=${CLIENT_SECRET}
+      --oidc-issuer-url=https://federate.infineon.com
+      --upstream=http://host.docker.internal:5173
+      --http-address=:8088
+      --redirect-url=${REDIRECT_URL}
+      --cookie-secret=3EiYVkKcTRcC8r3vrfhnZA==
+      --prompt=none
+      --email-domain=*
+    environment:
+      - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
+      - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}

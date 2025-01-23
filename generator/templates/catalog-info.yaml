@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: electron-app
+  description: |
+    This is the Showcase of ArgoCD, K8s, tekton plugins for Devgate
+  annotations:
+    argocd/app-name: electron-app-gitops
+    backstage.io/kubernetes-id: devgate
+    sonarqube.org/project-key: des-spf-electron-app
+  tags:
+    - electron-app
+  links:
+    - title: Infineon
+      url: https://www.infineon.com/
+    - title: Application URL
+      url: https://electron-app.icp.infineon.com
+spec:
+  type: service
+  lifecycle: production
+  owner: devgate
+  system: devgate
+  dependsOn:
+    - resource:pgdb
+    - resource:tekton
+    - resource:bitbucket

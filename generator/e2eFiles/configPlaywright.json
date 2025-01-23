@@ -1,0 +1,9 @@
+{
+    "projectKey" : "<%= promptResults.t4j_key %>",
+    "Videos" : "yes",
+    "Screenshots" : "yes",
+    "planName_master" : "Example plan",
+    "planName_dev" : "Example plan",
+    "planName_prod" : "Example plan2",
+    "planName_stage" : "Example plan1"
+}

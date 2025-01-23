@@ -1,0 +1,80 @@
+[
+  {
+    "description": "    Description: Title, Valid and invalid entries,Error Validation ,Successful validation",
+    "elements": [
+      {
+        "description": "",
+        "id": "home-page;example-1-check-whether-the-user-is-able-to-see-the-home-page",
+        "keyword": "Scenario Outline",
+        "line": 14,
+        "name": "Example-1 Check whether the user is able to see the home Page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 256870300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 9,
+            "name": "Launch Application",
+            "match": {
+              "location": "e2e\\playwright\\step-definitions\\example-test.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 282200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "Verify the user able to see home Page",
+            "match": {
+              "location": "e2e\\playwright\\step-definitions\\example-test.js:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 135900
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2299440200
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Regression",
+            "line": 1
+          },
+          {
+            "name": "@Example-1",
+            "line": 7
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "home-page",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Home Page",
+    "tags": [
+      {
+        "name": "@Regression",
+        "line": 1
+      }
+    ],
+    "uri": "e2e\\playwright\\features\\ExampleHomePage.feature"
+  }
+]
