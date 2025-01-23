@@ -12,16 +12,16 @@ module.exports = [
     ],
     default: ['windows'], 
   },
-  {
-    name: "authRequired", // Miami authentication
-    type: "list",
-    message: "Choose the auth type required:",
-    choices: [
-      { title: "No Authentication", value: "No Authentication" },
-      { title: "Authentication using MIAMI (OAuth)", value: "Authentication using MIAMI (OAuth)" },
-    ],
-    initial: 0, 
-  },
+  // {
+  //   name: "authRequired", // Miami authentication
+  //   type: "list",
+  //   message: "Choose the auth type required:",
+  //   choices: [
+  //     { title: "No Authentication", value: "No Authentication" },
+  //     { title: "Authentication using MIAMI (OAuth)", value: "Authentication using MIAMI (OAuth)" },
+  //   ],
+  //   initial: 0, 
+  // },
   {
     name: "isSideBarRequired", // Menu type
     type: "list",

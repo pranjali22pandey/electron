@@ -15,14 +15,14 @@ module.exports = function (api, options) {
   let dependencies = {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
-    "@infineon/design-system-tokens": "^3.3.2",
-    "@infineon/infineon-design-system-vue": "^24.1.0",
+    "@element-plus/icons-vue": "^2.3.1",
     "ag-grid-community": "^32.0.1",
     "ag-grid-vue3": "^32.0.1",
     "axios": "^1.7.7",
     "babel-eslint": "^10.1.0",
     "core-js": "^3.8.3",
     "electron-updater": "^6.1.7",
+    "element-plus": "^2.9.3",
     "pinia": "^2.2.2",
     "sass": "^1.79.3",
     "sass-loader": "^16.0.2",
@@ -116,12 +116,12 @@ module.exports = function (api, options) {
     doc: "jsdoc src -r -c jsdoc_config.json -d documents",
   };
 
-  const miamiScripts = {
-    "start:dev": "electron-vite dev",
-    "start:serve": "docker compose up",
-    "start:both": "concurrently \"npm run start:dev\" \"npm run start:serve\"",
-    dev: "npm run start:both",
-  };
+  // const miamiScripts = {
+  //   "start:dev": "electron-vite dev",
+  //   "start:serve": "docker compose up",
+  //   "start:both": "concurrently \"npm run start:dev\" \"npm run start:serve\"",
+  //   dev: "npm run start:both",
+  // };
 
   const playwrightScripts = {
     "test:e2e": "npx cucumber-js -p test_runner --tags",
@@ -166,11 +166,11 @@ module.exports = function (api, options) {
     });
   });
 
-  if(promptResults.authRequired === "Authentication using MIAMI (OAuth)") {
-    api.render("./templateFiles/miami", {
-      promptResults,
-    });
-  }
+  // if(promptResults.authRequired === "Authentication using MIAMI (OAuth)") {
+  //   api.render("./templateFiles/miami", {
+  //     promptResults,
+  //   });
+  // }
 
   
   api.render("./templates", {
