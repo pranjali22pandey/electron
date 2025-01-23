@@ -15,10 +15,10 @@
         <span class="application-name">Application name</span>
         <div class="separator"></div>
       </div>
-      <el-menu-item index="1">
+      <el-menu-item >
         <RouterLink to="/" class="nav-link">Home</RouterLink>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item >
         <RouterLink to="/ag-grid" class="nav-link">AG-Grid</RouterLink>
       </el-menu-item>
     </el-menu>

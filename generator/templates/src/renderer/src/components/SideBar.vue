@@ -13,28 +13,30 @@
       <img src="../assets/images/ico.png" alt="Company Logo" class="sidebar-logo" />
       <span class="application-name">Application Name</span>
     </div>
-      <el-menu-item index="1">
+      <el-menu-item >
         <RouterLink to="/" class="sidebar-link">
           <i class="el-icon-menu"></i>
           <span class="menu-text">Home</span>
         </RouterLink>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item >
         <RouterLink to="/ag-grid" class="sidebar-link">
           <i class="el-icon-menu"></i>
           <span class="menu-text">AG-Grid</span>
         </RouterLink>
       </el-menu-item>
-      <div class="sidebar-footer-separator"></div> 
+      
+      <!-- Ensure the separator is placed correctly -->
+      
+      
       <div class="sidebar-footer">
-      <a href="https://yourwebsite.com/terms" target="_blank" class="footer-link">Terms of Use</a>
-      <a href="https://yourwebsite.com/imprint" target="_blank" class="footer-link" style="margin-left: 10px;">Imprint</a><br>
-      <br>
-      <a href="https://yourwebsite.com/privacy-policy" target="_blank" class="footer-link" style="margin-top: 10px;">Privacy Policy</a>
-      <div class="copyright-text">© 1999 - 2024 Infineon <br>Technologies AG</div>
-    </div>
-
-  </el-menu>
+        <div class="sidebar-footer-separator"></div>
+        <a href="https://yourwebsite.com/terms" target="_blank" class="footer-link">Terms of Use</a>
+        <a href="https://yourwebsite.com/imprint" target="_blank" class="footer-link" style="margin-left: 10px;">Imprint</a><br><br>
+        <a href="https://yourwebsite.com/privacy-policy" target="_blank" class="footer-link" style="margin-top: 10px;">Privacy Policy</a>
+        <div class="copyright-text">© 1999 - 2024 Infineon <br>Technologies AG</div>
+      </div>
+    </el-menu>
   </el-aside>
 </template>
 
@@ -94,15 +96,14 @@ export default {
 
 .sidebar-link:hover {
   color: #0a8276;
-  background-color: #f5f5f5;
   border-radius: 5px;
 }
 .sidebar-footer-separator {
-  height: 1px;
-  background-color: #0f0f0f;
-  margin: 10px 0; /* Adjust margin to provide spacing */
+  height: 0px;
+  background-color: #0f0f0f; /* Ensure this color is visible */
+  margin: 20px 1px; /* Adjust margin to provide spacing */
+  border: 0.5px solid rgb(235, 233, 233); /* For debugging purposes */
 }
-
 .menu-text {
   margin-left: -60px;
 }
