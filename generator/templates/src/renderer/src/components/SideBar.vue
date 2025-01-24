@@ -100,9 +100,9 @@ export default {
 }
 .sidebar-footer-separator {
   height: 0px;
-  background-color: #0f0f0f; /* Ensure this color is visible */
-  margin: 20px 1px; /* Adjust margin to provide spacing */
-  border: 0.5px solid rgb(235, 233, 233); /* For debugging purposes */
+  background-color: #0f0f0f; 
+  margin: 20px 1px; 
+  border: 0.5px solid rgb(235, 233, 233); 
 }
 .menu-text {
   margin-left: -60px;
