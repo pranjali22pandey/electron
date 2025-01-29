@@ -12,7 +12,7 @@
         type="primary"
         :disabled="false"
         size="medium"
-        :style="{ backgroundColor: '#0a8276', borderColor: '#0a8276',fontWeight: 'bold' , fontSize: '16px',borderRadius: '0px',padding: '5px 15px', height: '40px' }"
+        :style="{ backgroundColor: '#0a8276', borderColor: '#0a8276', fontWeight: 'bold', fontSize: '16px', borderRadius: '0px', padding: '5px 15px', height: '40px' }"
         @click="triggerFileInput"
       >
         Import Excel
@@ -22,7 +22,7 @@
         plain
         :disabled="!dataImported"
         size="medium"
-        :style="{ backgroundColor: '#fff', borderColor: '#0a8276', color:'#0a8276', fontWeight: 'bold' ,fontSize: '16px',borderRadius: '0px' ,padding: '5px 15px', height: '40px'}"
+        :style="{ backgroundColor: '#fff', borderColor: '#0a8276', color: '#0a8276', fontWeight: 'bold', fontSize: '16px', borderRadius: '0px', padding: '5px 15px', height: '40px' }"
         @click="exportExcel"
       >
         Export Excel
@@ -30,9 +30,9 @@
       <el-button
         type="primary"
         link
-        :disabled="!dataImported"
+        :disabled="!dataImported || !hasSelectedRows"
         size="medium"
-        :style="{ backgroundColor: '#fff', borderColor: '#fff', color: '#0a8276',fontWeight: 'bold',fontSize: '16px',padding: '5px 15px', height: '40px' }"
+        :style="{ backgroundColor: '#fff', borderColor: '#fff', color: '#0a8276', fontWeight: 'bold', fontSize: '16px', padding: '5px 15px', height: '40px' }"
         @click="deleteSelectedRows"
       >
         Delete
@@ -52,6 +52,7 @@
         :pagination="true"
         :pagination-page-size="paginationPageSize"
         @grid-ready="onGridReady"
+        @selection-changed="onSelectionChanged"
       />
     </div>
   </div>
@@ -64,7 +65,6 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { AgGridVue } from 'ag-grid-vue3';
 import * as XLSX from 'xlsx';
-
 
 export default {
   name: 'AgGrid',
@@ -90,6 +90,7 @@ export default {
     const paginationPageSize = ref(25);
     const paginationPageSizeSelector = ref([25, 50, 75]);
     const dataImported = ref(false);
+    const hasSelectedRows = ref(false);
 
     const onGridReady = (params) => {
       gridApi.value = params.api;
@@ -193,6 +194,12 @@ export default {
       }
     };
 
+    const onSelectionChanged = () => {
+      if (!gridApi.value) {
+        return;
+      }
+      hasSelectedRows.value = gridApi.value.getSelectedRows().length > 0;
+    };
 
     onMounted(() => {
       loadDataFromLocalStorage();
@@ -221,6 +228,7 @@ export default {
       paginationPageSize,
       paginationPageSizeSelector,
       dataImported,
+      hasSelectedRows,
       onGridReady,
       handleFileUpload,
       triggerFileInput,
@@ -228,6 +236,7 @@ export default {
       deleteSelectedRows,
       saveDataToLocalStorage,
       loadDataFromLocalStorage,
+      onSelectionChanged,
       gridApi,
     };
   },
@@ -264,12 +273,6 @@ export default {
   overflow: hidden;
 }
 
-.ag-theme-alpine {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 
 .ag-theme-alpine .ag-root-wrapper {
   display: flex;
