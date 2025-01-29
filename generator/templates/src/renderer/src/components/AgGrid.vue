@@ -95,8 +95,8 @@ export default {
       editable: true,
       flex: 1,
     });
-    const paginationPageSize = ref(25);
-    const paginationPageSizeSelector = ref([25, 50, 75]);
+    const paginationPageSize = ref(20);
+    const paginationPageSizeSelector = ref([20, 50, 100]);
     const dataImported = ref(false);
 
     const onGridReady = (params) => {
@@ -266,13 +266,6 @@ export default {
   flex: 1;
   display: flex;
   overflow: hidden;
-}
-
-.ag-theme-alpine {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .ag-theme-alpine .ag-root-wrapper {
